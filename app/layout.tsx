@@ -1,7 +1,6 @@
 import type React from "react"
 import type { Metadata } from "next"
 import { Analytics } from "@vercel/analytics/next"
-import Script from "next/script"
 import { Toaster } from "@/components/ui/sonner"
 import "./globals.css"
 
@@ -45,39 +44,6 @@ export default function RootLayout({
         {children}
         <Analytics />
         <Toaster />
-        
-        {/* Firebase SDK - CDN 방식 */}
-        <Script
-          type="module"
-          id="firebase-init"
-          strategy="afterInteractive"
-        >
-          {`
-            // Import the functions you need from the SDKs you need
-            import { initializeApp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js";
-            import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-analytics.js";
-
-            // Your web app's Firebase configuration
-            const firebaseConfig = {
-              apiKey: "AIzaSyDGdQiDM3ExFNVAxOMPi9-hrceYisrPvrg",
-              authDomain: "miso-1ee7b.firebaseapp.com",
-              projectId: "miso-1ee7b",
-              storageBucket: "miso-1ee7b.firebasestorage.app",
-              messagingSenderId: "465431937526",
-              appId: "1:465431937526:web:441dfef452919dea8447d7",
-              measurementId: "G-QXCHCBF35H"
-              databaseURL:https://miso-1ee7b-default-rtdb.asia-southeast1.firebasedatabase.app/
-            };
-
-            // Initialize Firebase
-            const app = initializeApp(firebaseConfig);
-            const analytics = getAnalytics(app);
-            
-            // 전역 객체로 내보내기 (다른 곳에서 사용 가능하도록)
-            window.firebaseApp = app;
-            window.firebaseAnalytics = analytics;
-          `}
-        </Script>
       </body>
     </html>
   )

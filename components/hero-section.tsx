@@ -166,10 +166,10 @@ export function HeroSection({ lang, onLangChange }: HeroSectionProps) {
           text={t.menu.chat}
           onClick={() => {
             if (!user) {
-              router.push(`/login?lang=${lang}&redirect=chat`);
-              return;
+              router.push(`/login?lang=${lang}&redirect=chat`)
+              return
             }
-            router.push(`/chat?lang=${lang}`);
+            router.push(`/chat?lang=${lang}`)
           }}
           className="border-white/20 bg-white/10 backdrop-blur-sm text-white cursor-pointer"
         />

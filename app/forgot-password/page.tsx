@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, Suspense } from "react"
 import { useSearchParams, useRouter } from "next/navigation"
 import Link from "next/link"
 import Image from "next/image"
@@ -13,10 +13,10 @@ import { Label } from "@/components/ui/label"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { GlassFilter } from "@/components/ui/liquid-radio"
-import { Mail, ArrowLeft, CheckCircle2 } from "lucide-react"
+import { Mail, ArrowLeft, CheckCircle2, Loader2 } from "lucide-react"
 import { motion } from "framer-motion"
 
-export default function ForgotPasswordPage() {
+function ForgotPasswordPageContent() {
   const searchParams = useSearchParams()
   const [lang, setLang] = useState<"ko" | "jp">("ko")
   const [email, setEmail] = useState("")
@@ -274,4 +274,24 @@ export default function ForgotPasswordPage() {
   )
 }
 
+export default function ForgotPasswordPage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#C97D60]/10 via-[#D4A574]/10 to-[#FF9DB5]/10">
+          <Card className="w-full max-w-md">
+            <CardContent className="pt-6">
+              <div className="flex flex-col items-center gap-4">
+                <Loader2 className="h-8 w-8 animate-spin text-primary" />
+                <p className="text-muted-foreground">로딩 중...</p>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      }
+    >
+      <ForgotPasswordPageContent />
+    </Suspense>
+  )
+}
 
