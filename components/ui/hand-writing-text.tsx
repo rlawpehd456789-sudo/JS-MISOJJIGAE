@@ -40,7 +40,7 @@ function HandWrittenTitle({
       transition: {
         pathLength: { 
           duration: 2.5, 
-          ease: [0.43, 0.13, 0.23, 0.96],
+          ease: "cubic-bezier(0.43, 0.13, 0.23, 0.96)" as const,
         },
         opacity: { duration: 0.5 },
       },
